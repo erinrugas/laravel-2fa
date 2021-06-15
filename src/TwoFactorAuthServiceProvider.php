@@ -2,6 +2,7 @@
 
 namespace ErinRugas\Laravel2fa;
 
+use ErinRugas\Laravel2fa\Commands\Installations;
 use Illuminate\Support\ServiceProvider;
 
 class TwoFactorAuthServiceProvider extends ServiceProvider
@@ -11,7 +12,11 @@ class TwoFactorAuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Installations::class
+            ]);
+        }
     }
 
     /**
