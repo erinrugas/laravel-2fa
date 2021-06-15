@@ -1,0 +1,45 @@
+{
+
+    "name": "erinrugas/laravel-2fa",
+    "description": "Minimal starter laravel application with two factor authentication and using bootstrap 5.",
+    "keywords": [
+        "erinrugas",
+        "laravel-2fa",
+        "two-factor-authentication",
+        "bootstrap-5"
+    ],
+    "homepage": "https://github.com/erinrugas/laravel-2fa",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Erin Rugas",
+            "email": "erinjohnrugas@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "bacon/bacon-qr-code": "dev-master",
+        "illuminate/support": "^8.0",
+        "laravel/breeze": "^1.3",
+        "pragmarx/google2fa": "8.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "ErinRugas\\Laravel2fa\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ErinRugas\\Laravel2fa\\TwoFactorAuthServiceProvider"
+            ],
+            "aliases": {
+                "TwoFactorAuth": "ErinRugas\\Laravel2fa\\Facades\\TwoFactorAuth"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
