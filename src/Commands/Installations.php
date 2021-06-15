@@ -36,7 +36,7 @@ class Installations extends Command
     public $packageJsonPath;
 
 
-    public function __construct(FileSystem $filesystem)
+    public function __construct(Filesystem $filesystem)
     {
         parent::__construct();
         $this->filesystem = $filesystem;
@@ -46,6 +46,27 @@ class Installations extends Command
     public function handle()
     {
         $this->updatePackageJson();
+
+        //copy js
+        $this->filesystem->ensureDirectoryExists(resource_path('js'));
+        $this->filesystem->copyDirectory(__DIR__ . '/../resources/js', resource_path('js'));
+
+        //copy sass
+        $this->filesystem->ensureDirectoryExists(resource_path('sass'));
+        $this->filesystem->copyDirectory(__DIR__ . '/../resources/sass', resource_path('sass'));
+
+        $this->filesystem->copy(__DIR__ . '/../webpack.mix.js', base_path('webpack.mix.js'));
+
+        //controllers
+        $this->filesystem->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
+        $this->filesystem->copyDirectory(__DIR__ . '/../Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+
+        //routes
+        $this->filesystem->copyDirectory(__DIR__ . '/../routes', base_path('routes'));
+
+        //views
+        $this->filesystem->ensureDirectoryExists(resource_path('views'));
+        $this->filesystem->copyDirectory(__DIR__ . '/../resources/views', resource_path('views'));
 
         $this->info('Larave 2FA Successfully Installed');
         $this->comment('Please run "npm install" and "npm run dev" to build your assets');
