@@ -30,7 +30,7 @@
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
-                            <li><a class="dropdown-item" href="#"
+                            <li><a class="dropdown-item" href="javascript::void(0)"
                                     onclick="document.getElementById('logout').submit()">Logout</a>
 
                             </li>
