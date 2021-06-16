@@ -72,6 +72,11 @@ class Installations extends Command
         $this->comment('Please run "npm install" and "npm run dev" to build your assets');
     }
 
+    /**
+     * Update package.json
+     *
+     * @return void
+     */
     protected function updatePackageJson()
     {
         if (! file_exists($this->packageJsonPath)) {
@@ -97,6 +102,11 @@ class Installations extends Command
 
     }
 
+    /**
+     * Get Package Json Contents
+     *
+     * @return array
+     */
     protected function getPackageJsonContents() : array
     {
         return json_decode(file_get_contents($this->packageJsonPath), true);
