@@ -14,7 +14,7 @@
                         <p><small>Update your personal information</small></p>
 
                         @if (session()->has('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
+                            <div class="alert alert-success">{{ session('success') }}</div>
                         @endif
                     </div>
                     <div class="col-md-6">
@@ -26,9 +26,9 @@
                                 <label for="name">Name</label>
 
                                 @error('name')
-                                <div class="invalid-feedback text-start">
-                                    {{ $message }}
-                                </div>
+                                    <div class="invalid-feedback text-start">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
 
@@ -38,9 +38,9 @@
                                 <label for="email">Email address</label>
 
                                 @error('email')
-                                <div class="invalid-feedback text-start">
-                                    {{ $message }}
-                                </div>
+                                    <div class="invalid-feedback text-start">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
 
@@ -57,7 +57,71 @@
                         <p><small>Additional layer of security to your account.</small></p>
                     </div>
                     <div class="col-md-6">
+                        <p>
+                            <small>
+                                Once two factor authentication is enable. During authentication, you will need your recovery code or authenticator app.
+                            </small>
+                        </p>
 
+                        @if (is_null(auth()->user()->two_factor_recovery_code) && is_null(auth()->user()->two_factor_secret))
+                            <form action="{{ route('profile.enable-two-factor') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-dark">Enable two factor authentication</button>
+                            </form>
+                        @else
+                            @if (session()->has('enable_two_factor'))
+                                <p>
+                                    <small>
+                                        Scan this QR code using any authenticator app such as Google Authenticator and Microsoft Authenticator
+                                        You will be needed this during your authentication
+                                    </small>
+                                </p>
+
+                                <div class="text-center">
+                                    {!! auth()->user()->twoFactorQRImg() !!}
+                                </div>
+
+                                @include('users.recovery-code.recovery-code')
+
+                                <div class="d-flex justify-content-between">
+                                    <form action="{{ route('profile.disable-recovery-code') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Disable Two Factor Authenticator</button>
+                                    </form>
+
+                                    <form action="{{ route('profile.generate-recovery-code') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">Generate New Recovery Code</button>
+                                    </form>
+                                </div>
+
+                            @elseif (session()->has('show_two_factor'))
+
+                                @include('users.recovery-code.recovery-code')
+                                
+                                <div class="d-flex justify-content-between">
+                                    <form action="{{ route('profile.disable-recovery-code') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Disable Two Factor Authenticator</button>
+                                    </form>
+
+                                    <form action="{{ route('profile.generate-recovery-code') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">Generate New Recovery Code</button>
+                                    </form>
+                                </div>
+
+                            @else
+
+                                <div class="d-flex justify-content-between">
+                                    <form action="{{ route('profile.show-recovery-code') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-dark show-recovery-code">Show Recovery Code</button>
+                                    </form>
+                                </div>
+                                
+                            @endif
+                        @endif
                     </div>
                 </div>
             </div>

@@ -20,5 +20,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/profile', [UserController::class, 'index'])->name('profile');
     Route::post('/profile', [UserController::class, 'update'])->name('profile.update');
 
+
+    Route::post('/profile/enable-two-factor', [UserController::class, 'enableTwoFactorAuth'])->name('profile.enable-two-factor');
+    Route::post('/profile/show-two-factor', [UserController::class, 'showRecoveryCode'])->name('profile.show-recovery-code');
+    Route::post('/profile/disable-two-factor', [UserController::class, 'disableTwoFactorAuth'])->name('profile.disable-recovery-code');
+    Route::post('/profile/generate-two-factor', [UserController::class, 'generateRecoveryCode'])->name('profile.generate-recovery-code');
+
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
