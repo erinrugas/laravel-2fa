@@ -22,8 +22,8 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [UserController::class, 'index'])->name('profile');
-    Route::post('/profile', [UserController::class, 'update'])->name('profile.update');
-
+    Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
+    Route::put('/profile/update-password', [UserController::class, 'updatePassword'])->name('profile.update.password');
 
     Route::post('/profile/enable-two-factor', [UserController::class, 'enableTwoFactorAuth'])->name('profile.enable-two-factor');
     Route::post('/profile/show-two-factor', [UserController::class, 'showRecoveryCode'])->name('profile.show-recovery-code');

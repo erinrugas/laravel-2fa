@@ -7,6 +7,7 @@ use ErinRugas\Laravel2fa\Actions\DisableTwoFactorAuth;
 use ErinRugas\Laravel2fa\Actions\EnableTwoFactorAuth;
 use ErinRugas\Laravel2fa\Actions\GenerateTwoFactorAuth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -42,7 +43,28 @@ class UserController extends Controller
         $user->email = strtolower($request->email);
         $user->save();
 
-        return redirect()->route('profile')->with('success', 'Successfully update profile');
+        return redirect()->route('profile')->with('profile', 'Successfully update personal information');
+    }
+
+    /**
+     * Update Password
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'new_password'  => 'required|min:8|confirmed',
+        ], [
+            'new_password.confirmed'    => "The password does not match."
+        ]);
+
+        $user = User::where('id', $request->user()->id)->first();
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->route('profile')->with('password', 'Successfully update your password');
     }
 
     /**

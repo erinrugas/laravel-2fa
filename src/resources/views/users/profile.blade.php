@@ -4,23 +4,23 @@
 <div class="row mt-5">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header bg-primary text-white">
-                Profile
+            <div class="card-header bg-dark text-white h5">
+                Personal Information
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <h5 class="fw-bold">Personal Information</h5>
-                        <p><small>Update your personal information</small></p>
+                        <h6>Update your personal information</h6>
 
-                        @if (session()->has('success'))
-                            <div class="alert alert-success">{{ session('success') }}</div>
+                        @if (session()->has('profile'))
+                            <div class="alert alert-success">{{ session('profile') }}</div>
                         @endif
 
                     </div>
                     <div class="col-md-6">
                         <form action="{{ route('profile.update') }}" method="POST">
                             @csrf
+                            @method("PUT")
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                                     value="{{ auth()->user()->name }}" name="name">
@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="float-end">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-primary">Update Personal Information</button>
                             </div>
                         </form>
                     </div>
@@ -54,8 +54,59 @@
                 <hr>
                 <div class="row mt-3">
                     <div class="col-md-6">
-                        <h5 class="fw-bold">Two Factor Authentication</h5>
-                        <p><small>Additional layer of security to your account.</small></p>
+                        <h6>Update your password</h6>
+                        
+                        @if (session()->has('password'))
+                            <div class="alert alert-success">{{ session('password') }}</div>
+                        @endif
+                    </div>
+                    <div class="col-md-6">
+                        <form action="{{ route('profile.update.password') }}" method="POST">
+                            @csrf
+                            @method("PUT")
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control @error('new_password') is-invalid @enderror" id="new_password"
+                                    placeholder="New Password" name="new_password">
+                                <label for="new-password">New Password</label>
+                        
+                                @error('new_password')
+                                <div class="invalid-feedback text-start">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control @error('new_password_confirmation') is-invalid @enderror" id="confirm-password"
+                                    placeholder="Confirm Password" name="new_password_confirmation">
+                                <label for="confirm-password">Confirm Password</label>
+                            
+                                @error('new_password_confirmation')
+                                <div class="invalid-feedback text-start">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        
+                            <div class="float-end">
+                                <button type="submit" class="btn btn-primary">Update Password</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-12">
+        <div class="card mt-3">
+            <div class="card-header bg-dark text-white h5">
+                Two Factor Authentication
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Additional layer of security to your account.</h6>
                     </div>
                     <div class="col-md-6">
                         <p>
