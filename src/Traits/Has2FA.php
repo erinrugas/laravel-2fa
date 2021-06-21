@@ -7,7 +7,6 @@ use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 use ErinRugas\Laravel2fa\Contracts\Authenticator;
-use PragmaRX\Google2FA\Google2FA;
 
 trait Has2FA
 {
