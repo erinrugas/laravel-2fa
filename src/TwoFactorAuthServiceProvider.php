@@ -4,6 +4,7 @@ namespace ErinRugas\Laravel2fa;
 
 use ErinRugas\Laravel2fa\Commands\Add2FAMigrations;
 use ErinRugas\Laravel2fa\Commands\Installations;
+use ErinRugas\Laravel2fa\Contracts\Authenticator;
 use Illuminate\Support\ServiceProvider;
 
 class TwoFactorAuthServiceProvider extends ServiceProvider
@@ -29,5 +30,7 @@ class TwoFactorAuthServiceProvider extends ServiceProvider
         $this->app->singleton('twofactorauth', function () {
             return new TwoFactorAuth;
         });
+
+        $this->app->bind(Authenticator::class, TwoFactorAuthenticator::class);
     }
 }

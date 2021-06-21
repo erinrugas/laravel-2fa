@@ -6,6 +6,7 @@ use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
+use ErinRugas\Laravel2fa\Contracts\Authenticator;
 use PragmaRX\Google2FA\Google2FA;
 
 trait Has2FA
@@ -42,16 +43,14 @@ trait Has2FA
     /**
      * Two Factor QR Code
      *
-     * @return
+     * @return string
      */
     public function twoFactorAuthQRCode()
     {
-        $google2fa = app(Google2FA::class);
+        $authenticator = app(Authenticator::class);
 
-        return $google2fa->getQRCodeUrl(
-            config('app.name'),
-            $this->email,
-            decrypt($this->two_factor_secret_key)
+        return $authenticator->getQRCodeUrl(
+            config('app.name'), $this->email, decrypt($this->two_factor_secret_key)
         );
     }
 }

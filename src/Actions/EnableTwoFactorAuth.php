@@ -2,13 +2,28 @@
 
 namespace ErinRugas\Laravel2fa\Actions;
 
+use ErinRugas\Laravel2fa\Contracts\Authenticator;
 use ErinRugas\Laravel2fa\Facades\TwoFactorAuth;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Str;
-use PragmaRX\Google2FA\Google2FA;
 
 class EnableTwoFactorAuth
 {
+    /**
+     * Authenticator
+     *
+     * @var [type]
+     */
+    protected $authenticator;
+
+    /**
+     * Constructor
+     *
+     * @param Authenticator $authenticator
+     */
+    public function __construct(Authenticator $authenticator)
+    {
+        $this->authenticator = $authenticator;
+    }
 
     /**
      * Enable Two Factor Authentication
@@ -18,7 +33,6 @@ class EnableTwoFactorAuth
      */
     public function __invoke($user)
     {
-        $google2Fa = new Google2FA();
 
         $user->two_factor_recovery_code = encrypt(
             json_encode(Collection::times(5, function () {
@@ -26,7 +40,7 @@ class EnableTwoFactorAuth
             })->all())
         );
 
-        $user->two_factor_secret_key = encrypt($google2Fa->generateSecretKey());
+        $user->two_factor_secret_key = encrypt($this->authenticator->generateSecretKey());
         $user->save();
     }
 }
