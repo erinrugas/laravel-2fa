@@ -16,6 +16,7 @@
                         @if (session()->has('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>
                         @endif
+
                     </div>
                     <div class="col-md-6">
                         <form action="{{ route('profile.update') }}" method="POST">
@@ -59,7 +60,7 @@
                     <div class="col-md-6">
                         <p>
                             <small>
-                                Once two factor authentication is enable. During authentication, you will need your recovery code or authenticator app.
+                                Once two factor authentication is enable. You will need your recovery code or authenticator app for authentication.
                             </small>
                         </p>
 
@@ -73,7 +74,7 @@
                                 <p>
                                     <small>
                                         Scan this QR code using any authenticator app such as Google Authenticator and Microsoft Authenticator
-                                        You will be needed this during your authentication
+                                        You will be needed this during your authentication.
                                     </small>
                                 </p>
 
@@ -116,10 +117,12 @@
                                 <div class="d-flex justify-content-between">
                                     <form action="{{ route('profile.show-recovery-code') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-dark show-recovery-code">Show Recovery Code</button>
+                                        <button type="submit" class="btn btn-dark show-recovery-code">
+                                            Show Recovery Code
+                                        </button>
                                     </form>
                                 </div>
-                                
+
                             @endif
                         @endif
                     </div>
