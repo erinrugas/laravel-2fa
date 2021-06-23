@@ -42,31 +42,6 @@ php artisan artisan laravel-2fa:migration
 php artisan migrate
 ```
 
-#### Add Has2FA in your User model
-
-```bash
-use Has2FA;
-```
-
-#### Advisable to hide two_factor_secret_key and two_factor_recovery_code column and add it to your fillable
-
-```bash
-protected $hidden = [
-    ...
-    'two_factor_secret_key',
-    'two_factor_recovery_code'
-    ...
-];
-
-protected $fillable = [
-    ...
-    'two_factor_secret_key',
-    'two_factor_recovery_code',
-    ...
-];
-
-```
-
 #### You may add this to your config/app.php
 
 ```bash
