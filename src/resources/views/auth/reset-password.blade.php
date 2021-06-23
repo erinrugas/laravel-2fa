@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card shadow p-3">
                 <div class="card-body">
-                    <main class="form-signin">
+                    <main class="auth-form">
                         <form method="POST" id="search-form" action="{{ route('password.update') }}">
                             @csrf
                             @method("PUT")

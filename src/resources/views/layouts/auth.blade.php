@@ -23,7 +23,7 @@
             background-color: #f5f5f5;
         }
 
-        .form-signin {
+        .auth-form {
             width: 100%;
             min-width: 450px;
             padding: 25px;

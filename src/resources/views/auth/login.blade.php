@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card shadow p-3">
                 <div class="card-body">
-                    <main class="form-signin">
+                    <main class="auth-form">
                         <form method="POST" id="login-form" action="{{ route('authenticate') }}">
                             @csrf
                             <h3 class="mb-3 fw-normal">Sign in</h3>
