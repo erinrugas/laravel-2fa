@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
@@ -22,16 +23,13 @@ class ResetPasswordController extends Controller
     public function index(Request $request)
     {
         $resetPassword = DB::table('password_resets')->where('email', $request->email)->first();
+        $now = now()->format('Y-m-d H:i');
 
-        if (is_null($resetPassword)) {
-            abort(404);
-        }
-
-        if (! Hash::check($request->route('token'), $resetPassword->token) || 
-            now()->format('Y-m-d H:i') > 
-                Carbon::parse($resetPassword->created_at)
-                ->addMinutes(60)
-                ->format('Y-m-d H:i')
+        if ( is_null($resetPassword) ||
+            ! Hash::check($request->route('token'), $resetPassword->token) ||
+            $now > Carbon::parse($resetPassword->created_at)
+                    ->addMinutes(60)
+                    ->format('Y-m-d H:i')
         ) {
             abort(419);
         }
