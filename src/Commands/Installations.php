@@ -91,7 +91,6 @@ class Installations extends Command
 
         if (array_key_exists('devDependencies', $packages)) {
             $devDependencies = [
-                "@fortawesome/fontawesome-free" => "^5.15.3",
                 "@popperjs/core" => "^2.9.2",
                 "bootstrap" => "^5.0.1",
                 'sass'  => "^1.32.13",
