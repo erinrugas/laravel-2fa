@@ -10,7 +10,7 @@
                         <form method="POST" id="register-form" autocomplete="off"
                             action="{{ route('register.store') }}">
                             @csrf
-                            <h1 class="h3 mb-3 fw-normal">Create an Account</h1>
+                            <h3 class="mb-3 fw-normal">Create an Account</h3>
 
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"

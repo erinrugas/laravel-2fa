@@ -9,7 +9,7 @@
                     <main class="form-signin">
                         <form method="POST" id="login-form" action="{{ route('authenticate') }}">
                             @csrf
-                            <h1 class="h3 mb-3 fw-normal">Sign in</h1>
+                            <h3 class="mb-3 fw-normal">Sign in</h3>
 
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
