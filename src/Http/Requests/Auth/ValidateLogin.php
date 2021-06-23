@@ -45,7 +45,7 @@ class ValidateLogin extends FormRequest
 
         $user = $model::where('email', $this->email)->first();
 
-        if (!Hash::check($this->password, $user->password)) {
+        if (is_null($user) || !Hash::check($this->password, $user->password)) {
 
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),

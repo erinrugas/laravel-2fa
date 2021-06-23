@@ -57,14 +57,18 @@ class Installations extends Command
 
         $this->filesystem->copy(__DIR__ . '/../webpack.mix.js', base_path('webpack.mix.js'));
 
-        //controllers
+        //copy controllers
         $this->filesystem->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
         $this->filesystem->copyDirectory(__DIR__ . '/../Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
 
-        //routes
+        //copy request
+        $this->filesystem->ensureDirectoryExists(app_path('Http/Request'));
+        $this->filesystem->copyDirectory(__DIR__ . '/../Http/Requests', app_path('Http/Requests'));
+
+        //copy routes
         $this->filesystem->copyDirectory(__DIR__ . '/../routes', base_path('routes'));
 
-        //views
+        //copy views
         $this->filesystem->ensureDirectoryExists(resource_path('views'));
         $this->filesystem->copyDirectory(__DIR__ . '/../resources/views', resource_path('views'));
 
