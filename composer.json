@@ -1,5 +1,4 @@
 {
-
     "name": "erinrugas/laravel-2fa",
     "description": "Minimal starter laravel application with two factor authentication and using bootstrap 5.",
     "keywords": [
@@ -18,9 +17,9 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
-        "bacon/bacon-qr-code": "dev-master",
+        "bacon/bacon-qr-code": "^2.0",
         "illuminate/support": "^8.0",
-        "pragmarx/google2fa": "8.x-dev"
+        "pragmarx/google2fa-laravel": "^1.4"
     },
     "autoload": {
         "psr-4": {
