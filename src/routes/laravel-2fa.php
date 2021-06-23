@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\TwoFactorAuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -16,6 +18,12 @@ Route::group(['middleware' => 'guest'], function () {
 
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'search'])->name('forgot-password.search');
+
+    Route::get('/reset-password/{token}', [ResetPasswordController::class, 'index'])->name('password.reset');
+    Route::put('/reset-password/', [ResetPasswordController::class, 'update'])->name('password.update');
 });
 
 
