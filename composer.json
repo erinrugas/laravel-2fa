@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^7.3|^8.0",
         "bacon/bacon-qr-code": "dev-master",
         "illuminate/support": "^8.0",
         "pragmarx/google2fa": "8.x-dev"
@@ -40,5 +40,6 @@
             }
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "prefer-stable" : true
 }
