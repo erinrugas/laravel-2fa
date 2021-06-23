@@ -23,7 +23,7 @@ composer require erinrugas/laravel-2fa
 #### Install the packages (this will also add bootstrap 5 and sass package.json)
 
 ```bash
-php artisan artisan laravel-2fa:install
+php artisan laravel-2fa:install
 
 npm install
 
@@ -33,7 +33,7 @@ npm run dev
 #### Add migration file for two factor authentication and migrate it.
 
 ```bash
-php artisan artisan laravel-2fa:migration
+php artisan laravel-2fa:migration
 ```
 
 #### Run migrate.
