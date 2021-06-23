@@ -39,7 +39,7 @@
                                 <div class="float-start">
                                     <div class="checkbox mb-3">
                                         <label>
-                                            <input type="checkbox" name="remember"> Remember me
+                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember me
                                         </label>
                                     </div>
                                 </div>
