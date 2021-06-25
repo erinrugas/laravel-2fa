@@ -109,13 +109,16 @@
                         <h6>Additional layer of security to your account.</h6>
                     </div>
                     <div class="col-md-6">
-                        <p>
-                            <small>
-                                Once two factor authentication is enable. You will need your recovery code or authenticator app for authentication.
-                            </small>
-                        </p>
+                        
 
                         @if (is_null(auth()->user()->two_factor_recovery_code) && is_null(auth()->user()->two_factor_secret))
+                            <p>
+                                <small>
+                                    Once two factor authentication is enable. 
+                                    You will need your recovery code or authenticator app for authentication.
+                                </small>
+                            </p>
+
                             <form action="{{ route('profile.enable-two-factor') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-dark">Enable two factor authentication</button>
@@ -164,7 +167,11 @@
                                 </div>
 
                             @else
-
+                                <p >
+                                    <small>
+                                        Two factor authentication is enabled.
+                                    </small>
+                                </p>
                                 <div class="d-flex justify-content-between">
                                     <form action="{{ route('profile.show-recovery-code') }}" method="POST">
                                         @csrf
