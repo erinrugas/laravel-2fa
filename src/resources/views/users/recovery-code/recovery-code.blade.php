@@ -1,6 +1,6 @@
 <p>
     <small>
-        Save this recovery code in a secure password manager or your notes. 
+        Save this recovery code in a secure password manager (LastPass, Bitwarden) or on your notes.
         Use this to access your account in case you lost your phone or the authentication app.
         <br>
         <strong>NOTE: Once recovery code is already used. It will be replaced by new one.</strong>
