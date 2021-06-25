@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ConfirmPassword;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -37,6 +38,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/profile/show-two-factor', [UserController::class, 'showRecoveryCode'])->name('profile.show-recovery-code');
     Route::post('/profile/disable-two-factor', [UserController::class, 'disableTwoFactorAuth'])->name('profile.disable-recovery-code');
     Route::post('/profile/generate-two-factor', [UserController::class, 'generateRecoveryCode'])->name('profile.generate-recovery-code');
+
+    Route::get('/confirm-password', [ConfirmPassword::class, 'index'])->name('confirmed');
+    Route::post('/confirm-password', [ConfirmPassword::class, 'confirmed'])->name('confirmed.password');
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
