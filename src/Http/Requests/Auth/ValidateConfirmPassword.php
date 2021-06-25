@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
+
 class ValidateConfirmPassword extends FormRequest
 {
     /**
@@ -32,7 +33,7 @@ class ValidateConfirmPassword extends FormRequest
         ];
     }
 
-    public function authenticate()
+    public function validate()
     {
         $this->ensureIsNotRateLimited();
 
