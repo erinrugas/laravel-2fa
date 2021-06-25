@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/profile/generate-two-factor', [UserController::class, 'generateRecoveryCode'])->name('profile.generate-recovery-code');
 
     Route::get('/confirm-password', [ConfirmPassword::class, 'index'])->name('confirmed');
-    Route::post('/confirm-password', [ConfirmPassword::class, 'confirmed'])->name('confirmed.password');
+    Route::post('/confirm-password', [ConfirmPassword::class, 'authenticate'])->name('confirmed.authenticate');
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

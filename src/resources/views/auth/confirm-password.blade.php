@@ -7,13 +7,13 @@
             <div class="card shadow p-3">
                 <div class="card-body">
                     <main class="auth-form">
-                        <form method="POST" id="confirm-password-form" action="{{ route('confirmed.password') }}">
+                        <form method="POST" id="confirm-password-form" action="{{ route('confirmed.authenticate') }}">
                             @csrf
                             <h3 class="mb-3 fw-normal">Confirm Password</h3>
 
                             <div class="form-floating mb-2">
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                    id="confirm-password" placeholder="Confirm Password" name="password">
+                                    id="confirm-password" placeholder="Confirm Password" name="password" autofocus>
                                 <label for="confirm-password">Password</label>
 
                                 @error('password')
