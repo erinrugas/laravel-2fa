@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use ErinRugas\Laravel2fa\Actions\DisableTwoFactorAuth;
 use ErinRugas\Laravel2fa\Actions\EnableTwoFactorAuth;
 use ErinRugas\Laravel2fa\Actions\GenerateTwoFactorAuth;
@@ -82,13 +83,26 @@ class UserController extends Controller
     }
 
     /**
-     * Undocumented function
+     * Show Recovery Code (Validate first if password is confirmed)
      *
      * @return void
      */
     public function showRecoveryCode()
     {
-        return redirect()->route('profile')->with('show_two_factor', 'Show Two Factor Authentication');
+        if (session()->has('confirmed_password')) {
+            if (
+                now()->format('Y-m-d H:i') >
+                Carbon::parse(session('confirmed_password'))
+                ->addHours()->format('Y-m-d H:i')
+            ) {
+                session()->remove('confirmed_password');
+            } else {
+                return redirect()->route('profile')
+                    ->with('show_two_factor', 'Show Two Factor Authentication');
+            }
+        }
+
+        return redirect()->route('confirmed');
     }
 
     /**
