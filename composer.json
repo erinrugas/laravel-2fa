@@ -38,5 +38,7 @@
                 "TwoFactorAuth": "ErinRugas\\Laravel2fa\\Facades\\TwoFactorAuth"
             }
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
