@@ -97,8 +97,6 @@ class Installations extends Command
         $packages = $this->getPackageJsonContents();
 
         if (array_key_exists('devDependencies', $packages)) {
-
-            
             $devDependencies = [
                 "@popperjs/core" => "^2.9.2",
                 "bootstrap" => "^5.0.2",
@@ -112,7 +110,6 @@ class Installations extends Command
 
         ksort($packages['devDependencies']);
         file_put_contents($this->packageJsonPath, json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL);
-
     }
 
     /**
