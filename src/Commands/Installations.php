@@ -97,15 +97,18 @@ class Installations extends Command
         $packages = $this->getPackageJsonContents();
 
         if (array_key_exists('devDependencies', $packages)) {
+
+            
             $devDependencies = [
                 "@popperjs/core" => "^2.9.2",
-                "bootstrap" => "^5.0.1",
+                "bootstrap" => "^5.0.2",
                 'sass'  => "^1.32.13",
                 "sass-loader" => "^11.1.1"
             ];
-
-            $packages['devDependencies'] += $devDependencies;
+            
+            $result = array_unique(array_merge($packages['devDependencies'], $devDependencies));
         }
+        $packages['devDependencies'] = $result;
 
         ksort($packages['devDependencies']);
         file_put_contents($this->packageJsonPath, json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL);
