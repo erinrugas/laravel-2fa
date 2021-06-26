@@ -52,8 +52,8 @@ class Installations extends Command
         $this->filesystem->copyDirectory(__DIR__ . '/../resources/js', resource_path('js'));
 
         //copy sass
-        $this->filesystem->ensureDirectoryExists(resource_path('sass'));
-        $this->filesystem->copyDirectory(__DIR__ . '/../resources/sass', resource_path('sass'));
+        $this->filesystem->ensureDirectoryExists(resource_path('scss'));
+        $this->filesystem->copyDirectory(__DIR__ . '/../resources/scss', resource_path('scss'));
 
         $this->filesystem->copy(__DIR__ . '/../webpack.mix.js', base_path('webpack.mix.js'));
 
