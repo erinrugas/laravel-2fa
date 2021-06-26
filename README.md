@@ -52,3 +52,8 @@ ErinRugas\Laravel2fa\TwoFactorAuthServiceProvider::class
 ]
 
 ```
+#### *NOTE: You need to re-run php artisan laravel-2fa:install every time you update the version*
+
+## License
+
+This Laravel 2FA is open source software license under the [MIT license](https://opensource.org/licenses/MIT).
