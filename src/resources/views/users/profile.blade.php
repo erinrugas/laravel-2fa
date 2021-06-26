@@ -125,6 +125,7 @@
                                     <button type="submit" class="btn btn-primary w-100">Enable Two Factor Authentication</button>
                                 </div>
                             </form>
+                            
                         @else
                             @if (session()->has('enable_two_factor'))
                                 <p>
@@ -174,14 +175,14 @@
                                         Two factor authentication is enabled.
                                     </small>
                                 </p>
-                               <div class="col-md-12">
-                                <form action="{{ route('profile.show-recovery-code') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary show-recovery-code w-100">
-                                        Show Recovery Code
-                                    </button>
-                                </form>
-                            </div>
+                                <div class="col-md-12">
+                                    <form action="{{ route('profile.show-recovery-code') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary show-recovery-code w-100">
+                                            Show Recovery Code
+                                        </button>
+                                    </form>
+                                </div>
 
                             @endif
                         @endif
