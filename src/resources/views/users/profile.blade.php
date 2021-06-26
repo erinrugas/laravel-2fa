@@ -45,8 +45,8 @@
                                 @enderror
                             </div>
 
-                            <div class="float-end">
-                                <button type="submit" class="btn btn-primary">Update Personal Information</button>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary w-100">Update Personal Information</button>
                             </div>
                         </form>
                     </div>
@@ -88,8 +88,8 @@
                                 @enderror
                             </div>
                         
-                            <div class="float-end">
-                                <button type="submit" class="btn btn-primary">Update Password</button>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary w-100">Update Password</button>
                             </div>
                         </form>
                     </div>
@@ -121,7 +121,9 @@
 
                             <form action="{{ route('profile.enable-two-factor') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-dark">Enable two factor authentication</button>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-dark w-100">Enable two factor authentication</button>
+                                </div>
                             </form>
                         @else
                             @if (session()->has('enable_two_factor'))
@@ -172,14 +174,14 @@
                                         Two factor authentication is enabled.
                                     </small>
                                 </p>
-                                <div class="d-flex justify-content-between">
-                                    <form action="{{ route('profile.show-recovery-code') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-dark show-recovery-code">
-                                            Show Recovery Code
-                                        </button>
-                                    </form>
-                                </div>
+                               <div class="col-md-12">
+                                <form action="{{ route('profile.show-recovery-code') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary show-recovery-code w-100">
+                                        Show Recovery Code
+                                    </button>
+                                </form>
+                            </div>
 
                             @endif
                         @endif
