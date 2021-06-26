@@ -97,7 +97,7 @@ class ValidateTwoFactorAuth extends FormRequest
      *
      * @return void
      */
-    public function authenticator()
+    public function authenticatorCode()
     {
         $this->ensureIsNotRateLimited();
 

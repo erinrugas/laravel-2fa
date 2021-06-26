@@ -34,7 +34,7 @@ class TwoFactorAuthController extends Controller
             return $request->recoveryCode();
         }
         
-        return $request->authenticator();
+        return $request->authenticatorCode();
     }
     
 }
