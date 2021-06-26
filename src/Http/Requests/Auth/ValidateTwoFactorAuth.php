@@ -65,6 +65,8 @@ class ValidateTwoFactorAuth extends FormRequest
      */
     public function recoveryCode()
     {
+        $this->ensureIsNotRateLimited();
+
         $collections = collect(json_decode(decrypt(session('two_factor_recovery')), TRUE));
 
         if (in_array($this->two_factor_auth, $collections->toArray())) {
@@ -80,8 +82,13 @@ class ValidateTwoFactorAuth extends FormRequest
             }
         }
 
+        /**
+         * Set 2 minutes if too many attempts.
+         */
+        RateLimiter::hit($this->throttleKey(), 120);
+
         throw ValidationException::withMessages([
-            'two_factor_auth' => 'Invalid code, try again',
+            'two_factor_auth' => 'Invalid code, try again.',
         ]);
     }
 
