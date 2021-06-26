@@ -122,7 +122,7 @@
                             <form action="{{ route('profile.enable-two-factor') }}" method="POST">
                                 @csrf
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-dark w-100">Enable two factor authentication</button>
+                                    <button type="submit" class="btn btn-primary w-100">Enable Two Factor Authentication</button>
                                 </div>
                             </form>
                         @else
