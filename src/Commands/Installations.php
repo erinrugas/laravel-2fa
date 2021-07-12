@@ -69,7 +69,7 @@ class Installations extends Command
         $this->filesystem->copyDirectory(__DIR__ . '/../Models', app_path('Models'));
         
         //copy request
-        $this->filesystem->ensureDirectoryExists(app_path('Http/Request'));
+        $this->filesystem->ensureDirectoryExists(app_path('Http/Requests'));
         $this->filesystem->copyDirectory(__DIR__ . '/../Http/Requests', app_path('Http/Requests'));
 
         //copy routes
