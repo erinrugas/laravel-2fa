@@ -101,7 +101,8 @@ class Installations extends Command
                 "@popperjs/core" => "^2.9.2",
                 "bootstrap" => "^5.0.2",
                 'sass'  => "^1.32.13",
-                "sass-loader" => "^11.1.1"
+                "sass-loader" => "^11.1.1",
+                "resolve-url-loader" => "^4.0.0"
             ];
             
             $result = array_unique(array_merge($packages['devDependencies'], $devDependencies));
