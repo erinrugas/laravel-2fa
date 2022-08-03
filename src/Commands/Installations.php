@@ -60,14 +60,14 @@ class Installations extends Command
         //copy controllers
         $this->filesystem->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
         $this->filesystem->copyDirectory(__DIR__ . '/../Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
-        
+
         $this->filesystem->ensureDirectoryExists(app_path('Http/Controllers'));
         $this->filesystem->copyDirectory(__DIR__ . '/../Http/Controllers', app_path('Http/Controllers'));
 
         //copy models
         $this->filesystem->ensureDirectoryExists(app_path('Models'));
         $this->filesystem->copyDirectory(__DIR__ . '/../Models', app_path('Models'));
-        
+
         //copy request
         $this->filesystem->ensureDirectoryExists(app_path('Http/Requests'));
         $this->filesystem->copyDirectory(__DIR__ . '/../Http/Requests', app_path('Http/Requests'));
@@ -94,23 +94,77 @@ class Installations extends Command
             return;
         }
 
+        $this->checkViteConfig();
+
         $packages = $this->getPackageJsonContents();
+
+        if (array_key_exists('scripts', $packages)) {
+            $scripts = [
+                'dev'  => "npm run development",
+                "development" => "mix",
+                "watch" => "mix watch",
+                "watch-poll" => "mix watch -- --watch-options-poll=1000",
+                "hot" => "mix watch --hot",
+                "prod" => "npm run production",
+                "production" => "mix --production"
+            ];
+
+
+            $packages['scripts'] = $scripts;
+        }
 
         if (array_key_exists('devDependencies', $packages)) {
             $devDependencies = [
-                "@popperjs/core" => "^2.9.2",
-                "bootstrap" => "^5.0.2",
-                'sass'  => "^1.32.13",
-                "sass-loader" => "^11.1.1",
-                "resolve-url-loader" => "^4.0.0"
+                'sass'  => "^1.52.2",
+                "sass-loader" => "^12.6.0",
+                "resolve-url-loader" => "^4.0.0",
+                "laravel-mix" => "^6.0.6"
             ];
-            
-            $result = array_unique(array_merge($packages['devDependencies'], $devDependencies));
-        }
-        $packages['devDependencies'] = $result;
 
+            if (isset($packages['devDependencies']['vite'])) {
+                unset($packages['devDependencies']['vite']);
+                $this->info('vite was removed from package.json. To avoid compiling using laravel-mix');
+            }
+
+            if (isset($packages['devDependencies']['laravel-vite-plugin'])) {
+                unset($packages['devDependencies']['laravel-vite-plugin']);
+                $this->info('laravel-vite-plugin was removed from package.json to avoid issue from laravel-mix');
+            }
+
+            $resultDevDependencies = array_unique(array_merge($packages['devDependencies'], $devDependencies));
+        }
+
+        if (!array_key_exists('dependencies', $packages)) {
+            $dependencies = [
+                "@popperjs/core" => "^2.11.5",
+                "bootstrap" => "^5.1.3"
+            ];
+
+            $packages['dependencies'] = $dependencies;
+        }
+
+        $this->newLine();
+
+        $packages['devDependencies'] = $resultDevDependencies;
+
+        ksort($packages['dependencies']);
         ksort($packages['devDependencies']);
+        
         file_put_contents($this->packageJsonPath, json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL);
+    }
+
+    /**
+     * Check if vite.config.js is exist
+     * This is to avoid the existing laravel-mix
+     *
+     * @return void
+     */
+    private function checkViteConfig()
+    {
+        if (file_exists(base_path('vite.config.js'))) {
+            $this->filesystem->delete(base_path('vite.config.js'));
+            $this->line('vite.config.js was deleted to avoid issue from laravel-mix.');
+        }
     }
 
     /**
@@ -118,9 +172,8 @@ class Installations extends Command
      *
      * @return array
      */
-    protected function getPackageJsonContents() : array
+    protected function getPackageJsonContents(): array
     {
         return json_decode(file_get_contents($this->packageJsonPath), true);
     }
-
 }
