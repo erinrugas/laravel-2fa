@@ -79,7 +79,7 @@ class Installations extends Command
         $this->filesystem->ensureDirectoryExists(resource_path('views'));
         $this->filesystem->copyDirectory(__DIR__ . '/../resources/views', resource_path('views'));
 
-        $this->info('Larave 2FA Successfully Installed');
+        $this->info('Laravel 2FA Successfully Installed');
         $this->comment('Please run "npm install" and "npm run dev" to build your assets');
     }
 
