@@ -4,7 +4,6 @@ namespace ErinRugas\Laravel2fa\Actions;
 
 use ErinRugas\Laravel2fa\Facades\TwoFactorAuth;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Str;
 
 class GenerateTwoFactorAuth
 {
