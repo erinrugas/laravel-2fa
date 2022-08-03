@@ -3,12 +3,12 @@
 Minimal starter laravel application with two factor authentication using bootstrap 5.
 
 ## Requirements
-* [Laravel 8](https://github.com/laravel/framework)
-* [PHP >= 7.3](https://www.php.net/)
+* [Laravel 9](https://github.com/laravel/framework)
+* [PHP 8](https://www.php.net/)
 
 ## Installation
 
-#### Create new laravel app (Laravel 8)
+#### Create new laravel 9 app or follow instruction in [laravel docs](https://laravel.com/docs/9.x/installation)
 
 ```bash
 laravel new your-app-name
@@ -19,16 +19,24 @@ laravel new your-app-name
 ```bash
 composer require erinrugas/laravel-2fa
 ```
+#### For Laravel 8
+```bash
+composer require erinrugas/laravel-2fa "^1.1.4"
+```
 
-#### Install the packages (this will also add bootstrap 5 and sass package.json)
+#### Install the frontend packages (this will add bootstrap 5 and sass package.json)
+##### *NOTE: If you are using laravel 9.19.0 or latest, this command will remove vite and revert back to laravel-mix. To migrate from laravel-mix to vite you may follow laravel instruction [here](https://laravel.com/docs/9.x/vite)*.
 
 ```bash
 php artisan laravel-2fa:install
+```
 
+```bassh
 npm install
-
 npm run dev
 ```
+
+
 
 #### Add migration file for two factor authentication and migrate it.
 
@@ -42,7 +50,7 @@ php artisan laravel-2fa:migration
 php artisan migrate
 ```
 
-#### You may add this to your config/app.php
+#### Add this to your config/app.php
 
 ```bash
 'providers' => [
