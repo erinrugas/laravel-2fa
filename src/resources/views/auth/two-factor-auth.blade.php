@@ -9,7 +9,7 @@
                     <main class="auth-form">
                         <form method="POST" id="login-form" action="{{ route('two-factor-authentication.validate') }}">
                             @csrf
-                            <h3 class="mb-3 fw-normal">Two Factor Authentication</h3>
+                            <h3 class="mb-3 fw-normal text-center">Two Factor Authentication</h3>
                             
                             <div class="form-floating mb-2">
                                 <input type="text" class="form-control @error('two_factor_auth') is-invalid @enderror" 
@@ -23,7 +23,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            <div class="auth-msg mb-2">
+                            <div class="auth-msg mb-2 text-center">
                                 <small>
                                     <i>
                                         Enter the code from the authenticator app on your mobile device.

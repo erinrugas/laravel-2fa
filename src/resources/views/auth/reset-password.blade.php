@@ -10,7 +10,7 @@
                         <form method="POST" id="search-form" action="{{ route('password.update') }}">
                             @csrf
                             @method("PUT")
-                            <h3 class="mb-3 fw-normal">Reset Password</h3>
+                            <h3 class="mb-3 fw-normal text-center">Reset Password</h3>
 
                             @if (session()->has('status'))
                                 <div class="alert alert-success">{{ session('status') }}</div>

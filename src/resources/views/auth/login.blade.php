@@ -9,10 +9,10 @@
                     <main class="auth-form">
                         <form method="POST" id="login-form" action="{{ route('authenticate') }}">
                             @csrf
-                            <h3 class="mb-3 fw-normal">Sign in</h3>
+                            <h3 class="mb-3 fw-normal text-center">Sign in</h3>
 
                             @if (session()->has('status'))
-                                <div class="alert alert-success">{{ session('status') }}</div>
+                            <div class="alert alert-success">{{ session('status') }}</div>
                             @endif
 
                             <div class="form-floating mb-3">
@@ -43,7 +43,8 @@
                                 <div class="float-start">
                                     <div class="checkbox mb-3">
                                         <label>
-                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember me
+                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''
+                                                }}> Remember me
                                         </label>
                                     </div>
                                 </div>
@@ -56,9 +57,11 @@
 
                             <button type="submit" class="btn btn-primary w-100 mb-3" id="submit-login">Sign in</button>
 
-                            Don't have an account? <a class="w-100 " href="/register">Sign up</a>
-                            <p class="mt-3 text-muted">&copy; {{ config('app.name') }}
-                                {{ \Carbon\Carbon::now()->format('Y') }}</p>
+                            <div class="text-center">
+                                Don't have an account? <a class="w-100 " href="/register">Sign up</a>
+                                <p class="mt-3 text-muted">&copy; {{ config('app.name') }}
+                                    {{ \Carbon\Carbon::now()->format('Y') }}</p>
+                            </div>
                         </form>
                     </main>
                 </div>

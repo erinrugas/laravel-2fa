@@ -9,8 +9,8 @@
                     <main class="auth-form">
                         <form method="POST" id="search-form" action="{{ route('forgot-password.search') }}">
                             @csrf
-                            <h3 class="mb-3 fw-normal">Forgot Password</h3>
-                            <div class="auth-msg mb-2">
+                            <h3 class="mb-3 fw-normal text-center">Forgot Password</h3>
+                            <div class="auth-msg mb-2 text-center">
                                 <small>
                                     <i>
                                         Enter your email address you want to reset the password.

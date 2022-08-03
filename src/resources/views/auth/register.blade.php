@@ -10,7 +10,7 @@
                         <form method="POST" id="register-form" autocomplete="off"
                             action="{{ route('register.store') }}">
                             @csrf
-                            <h3 class="mb-3 fw-normal">Create an Account</h3>
+                            <h3 class="mb-3 fw-normal text-center">Create an Account</h3>
 
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
@@ -51,9 +51,11 @@
                             <button type="submit" class="btn btn-primary w-100 mb-3" id="submit-register">Sign
                                 up</button>
 
-                            Have an account? <a class="w-100" href="/login">Sign in</a>
-                            <p class="mt-2 text-muted">&copy; {{ config('app.name') }}
-                                {{ \Carbon\Carbon::now()->format('Y') }}</p>
+                            <div class="text-center">
+                                Have an account? <a class="w-100" href="/login">Sign in</a>
+                                <p class="mt-2 text-muted">&copy; {{ config('app.name') }}
+                                    {{ \Carbon\Carbon::now()->format('Y') }}</p>
+                            </div>
                         </form>
                     </main>
                 </div>

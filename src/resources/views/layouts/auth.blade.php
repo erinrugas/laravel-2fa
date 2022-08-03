@@ -34,7 +34,7 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body class="d-flex h-100 text-center">
+<body class="d-flex h-100">
     <div class="cover-container d-flex mx-auto flex-column ">
         @yield('content')
     </div>
