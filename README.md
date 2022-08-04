@@ -17,7 +17,7 @@ laravel new your-app-name
 #### Get the package using composer
 
 ```bash
-composer require erinrugas/laravel-2fa
+composer require erinrugas/laravel-2fa "^1.1.4"
 ```
 
 #### Install the packages (this will also add bootstrap 5 and sass package.json)
